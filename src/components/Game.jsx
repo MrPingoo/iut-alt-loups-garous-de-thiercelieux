@@ -48,9 +48,24 @@ function Game() {
         "villagois"
     ];
 
+    const DEFAULT_NAMES = [
+        "Paul",
+        "Charlotte",
+        "Alice",
+        "Guillaume",
+        "Éloïse",
+        "Mathieu",
+        "Sophie",
+        "Julien",
+        "Camille",
+        "Lucas",
+        "Marine",
+        "Thomas"
+    ];
+
     const players = createPlayers(
-        Array.from({ length: NUM_PLAYERS }, (_, i) => ({
-            name: `Joueur ${i + 1}`,
+        DEFAULT_NAMES.slice(0, NUM_PLAYERS).map((name, i) => ({
+            name,
             role: DEFAULT_ROLES[i] || "villagois"
         }))
     );
