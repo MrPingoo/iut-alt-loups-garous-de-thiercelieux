@@ -31,14 +31,29 @@ function Game() {
         }));
     }
 
-    const players = createPlayers([
-        { name: "Alice", role: "loup-garou" },
-        { name: "Bob", role: "villagois" },
-        { name: "Clara", role: "chasseur" },
-        { name: "David", role: "voleur" },
-        { name: "Élise", role: "petite-fille" },
-        { name: "Félix", role: "cupidon" }
-    ]);
+    const MIN_PLAYERS = 8;
+    const MAX_PLAYERS = 12;
+    const NUM_PLAYERS = 8;
+
+    if (NUM_PLAYERS < MIN_PLAYERS || NUM_PLAYERS > MAX_PLAYERS) {
+        throw new Error(`NUM_PLAYERS doit être compris entre ${MIN_PLAYERS} et ${MAX_PLAYERS}`);
+    }
+
+    const DEFAULT_ROLES = [
+        "loup-garou",
+        "chasseur",
+        "voleur",
+        "petite-fille",
+        "cupidon",
+        "villagois"
+    ];
+
+    const players = createPlayers(
+        Array.from({ length: NUM_PLAYERS }, (_, i) => ({
+            name: `Joueur ${i + 1}`,
+            role: DEFAULT_ROLES[i] || "villagois"
+        }))
+    );
 
     useEffect(() => {
         // Simule l'écoulement du temps
