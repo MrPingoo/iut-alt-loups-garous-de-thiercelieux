@@ -10,14 +10,14 @@ import ModalQuestion from "./Game/ModalQuestion";
 function Game() {
     const [time, setTime] = useState(new Date(0, 0, 0, 6, 0, 0)); // Commence à 6h du matin
     const [isNight, setIsNight] = useState(false);
-    const [players, setPlayers] = useState([]);
 
     /**
      * Crée et initialise les joueurs selon une configuration de base.
      * @param {Array<{name: string, role: string, powers?: {lifePotion?: boolean, deathPotion?: boolean, isMayor?: boolean, lovers?: Array<string>}}>} playerConfigs
+     * @returns {Array} Liste des joueurs initialisés
      */
     function createPlayers(playerConfigs) {
-        const initialized = playerConfigs.map(({ name, role, powers = {} }) => ({
+        return playerConfigs.map(({ name, role, powers = {} }) => ({
             name,
             role,
             isDead: false,
@@ -29,19 +29,16 @@ function Game() {
                 lovers: powers.lovers || []
             }
         }));
-        setPlayers(initialized);
     }
 
-    useEffect(() => {
-        createPlayers([
-            { name: "Alice", role: "loup-garou" },
-            { name: "Bob", role: "villagois" },
-            { name: "Clara", role: "chasseur" },
-            { name: "David", role: "voleur" },
-            { name: "Élise", role: "petite-fille" },
-            { name: "Félix", role: "cupidon" }
-        ]);
-    }, []);
+    const players = createPlayers([
+        { name: "Alice", role: "loup-garou" },
+        { name: "Bob", role: "villagois" },
+        { name: "Clara", role: "chasseur" },
+        { name: "David", role: "voleur" },
+        { name: "Élise", role: "petite-fille" },
+        { name: "Félix", role: "cupidon" }
+    ]);
 
     useEffect(() => {
         // Simule l'écoulement du temps
@@ -67,7 +64,7 @@ function Game() {
                 */}
                 <Info/>
                 <Player/>
-                <Board/>
+                <Board players={players}/>
                 <Chat/>
             </div>
         </>
