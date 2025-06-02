@@ -89,9 +89,7 @@ function Game() {
             <div className="game">
                 <div className={"background " + (isNight ? 'background-night' : "")} id="background"></div>
                 <Clock isNight={true} time={time}/>
-                {/*
-                <ModalQuestion/>
-                */}
+                <ModalQuestion players={players} />
                 <Info/>
                 <Player/>
                 <Board players={players}/>
