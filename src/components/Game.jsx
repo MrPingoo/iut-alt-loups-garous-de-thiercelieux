@@ -40,13 +40,12 @@ function Game() {
         throw new Error(`NUM_PLAYERS doit être compris entre ${MIN_PLAYERS} et ${MAX_PLAYERS}`);
     }
 
-    const DEFAULT_ROLES = [
-        "loup-garou",
+    const OTHER_ROLES = [
         "chasseur",
         "voleur",
         "petite-fille",
         "cupidon",
-        "villagois"
+        "voyante"
     ];
 
     const DEFAULT_NAMES = [
@@ -72,9 +71,20 @@ function Game() {
         return array;
     }
 
+    const ROLE_COUNTS = {
+        8: { wolves: 2, villagers: 1 },
+        9: { wolves: 2, villagers: 2 },
+        10: { wolves: 3, villagers: 2 },
+        11: { wolves: 3, villagers: 3 },
+        12: { wolves: 4, villagers: 3 }
+    };
+
+    const { wolves: numWolves, villagers: numVillagers } = ROLE_COUNTS[NUM_PLAYERS];
+
     const SHUFFLED_ROLES = shuffle([
-        ...DEFAULT_ROLES,
-        ...Array(NUM_PLAYERS - DEFAULT_ROLES.length).fill("villagois")
+        ...Array(numWolves).fill("loup-garou"),
+        ...OTHER_ROLES,
+        ...Array(numVillagers).fill("villagois")
     ]);
     const players = createPlayers(
         ["Moi", ...DEFAULT_NAMES.slice(0, NUM_PLAYERS - 1)].map((name, i) => ({
