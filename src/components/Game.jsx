@@ -64,10 +64,22 @@ function Game() {
         "Thomas"
     ];
 
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const SHUFFLED_ROLES = shuffle([
+        ...DEFAULT_ROLES,
+        ...Array(NUM_PLAYERS - DEFAULT_ROLES.length).fill("villagois")
+    ]);
     const players = createPlayers(
-        DEFAULT_NAMES.slice(0, NUM_PLAYERS).map((name, i) => ({
+        ["Moi", ...DEFAULT_NAMES.slice(0, NUM_PLAYERS - 1)].map((name, i) => ({
             name,
-            role: DEFAULT_ROLES[i] || "villagois"
+            role: SHUFFLED_ROLES[i]
         }))
     );
 
