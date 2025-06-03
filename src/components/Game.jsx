@@ -6,7 +6,7 @@ import Info from "./Game/Info";
 import Board from "./Game/Board";
 import Chat from "./Game/Chat";
 import ModalQuestion from "./Game/ModalQuestion";
-import { QUESTIONS } from "../contants/questions";
+ import { Questions as QUESTIONS } from "../contants/Questions";
 
 function Game() {
     const [time, setTime] = useState(new Date(0, 0, 0, 6, 0, 0)); // Commence à 6h du matin

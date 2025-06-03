@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { QUESTIONS } from "../../contants/questions";
+import { Questions as QUESTIONS } from "../../contants/Questions";
 
 function ModalQuestion({ questions = QUESTIONS, players = [], onComplete }) {
   const [current, setCurrent] = useState(0);

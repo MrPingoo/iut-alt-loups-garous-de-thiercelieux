@@ -7,12 +7,6 @@ export const Questions = [
         question: "La sorcière souhaite-t-elle utiliser sa potion de vie pour ressusciter une personne ?"
     },
     {
-        key: "PLAYER_COUNT",
-        type: "selectNumber",
-        question: "Combien de joueurs souhaitez-vous sélectionner ?",
-        options: [1, 2]
-    },
-    {
         key: "CUPIDON",
         type: "selectPlayers",
         question: "Cupidon, choisissez deux joueurs à lier comme amants :",
@@ -48,5 +42,10 @@ export const Questions = [
         key: "MAIRE",
         type: "selectPlayer",
         question: "Qui doit être élu maire ?"
+    },
+    {
+        key: "VILLAGE_KILL",
+        type: "selectPlayer",
+        question: "Villageois, pour quelle personne souhaitez-vous voter pour la tuer, sachant qu'il s'agit probablement d'un loup ?"
     }
 ];
