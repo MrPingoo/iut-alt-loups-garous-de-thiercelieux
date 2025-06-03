@@ -1,6 +1,6 @@
 
 // Liste des questions pour les différentes étapes du jeu
-export const QUESTIONS = [
+export const Questions = [
     {
         key: "YES_NO",
         type: "yesNo",

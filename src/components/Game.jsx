@@ -6,6 +6,7 @@ import Info from "./Game/Info";
 import Board from "./Game/Board";
 import Chat from "./Game/Chat";
 import ModalQuestion from "./Game/ModalQuestion";
+import { QUESTIONS } from "../contants/questions";
 
 function Game() {
     const [time, setTime] = useState(new Date(0, 0, 0, 6, 0, 0)); // Commence à 6h du matin
@@ -89,7 +90,11 @@ function Game() {
             <div className="game">
                 <div className={"background " + (isNight ? 'background-night' : "")} id="background"></div>
                 <Clock isNight={true} time={time}/>
-                <ModalQuestion players={players} />
+                <ModalQuestion
+                    questions={QUESTIONS}
+                    players={players}
+                    onComplete={(answers) => console.log("Réponses modal :", answers)}
+                />
                 <Info/>
                 <Player/>
                 <Board players={players}/>
