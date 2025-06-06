@@ -150,7 +150,7 @@ function Game() {
         console.log(`Envoi du vote (${voteType}) à l'API:`, payload);
 
         try {
-            const response = await fetch("https://api-iut.codecodex.fr/", {
+            const response = await fetch("https://api-iut.codecodex.fr/vote/", {
                 /*mode: 'no-cors',*/
                 method: "POST",
                 headers: {
