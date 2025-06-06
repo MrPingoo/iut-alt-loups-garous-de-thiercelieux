@@ -16,7 +16,12 @@ function ModalQuestion({ questions = QUESTIONS, players = [], onComplete }) {
   const gotoNext = (answer) => {
     setAnswers((prev) => ({ ...prev, [q.key]: answer }));
     setSelected([]);
-    setCurrent((idx) => idx + 1);
+    setCurrent((idx) => {
+      let next = idx + 1;
+      if (q.key === 'WITCH_SAVE' && answer === false) next += 1;
+      if (q.key === 'WITCH_KILL' && answer === false) next += 1;
+      return next;
+    });
   };
 
   const renderBody = () => {

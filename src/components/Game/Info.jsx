@@ -1,13 +1,12 @@
 import React from "react";
 
-function Info({}) {
+function Info({ messages = [] }) {
     return (
-        <>
-            {/* Zone d'info */}
-            <div className="container">
-                <p>Bienvenue !</p>
-            </div>
-        </>
+        <div className="container">
+            {messages.map((msg, idx) => (
+                <p key={idx}>{msg}</p>
+            ))}
+        </div>
     );
 }
 
