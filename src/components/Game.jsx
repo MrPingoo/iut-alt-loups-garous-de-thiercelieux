@@ -133,6 +133,43 @@ function Game() {
          */
     };
 
+
+
+    // API Call pour récupérer les votes
+    const fetchVotesFromAPI = async (voteType, selected) => {
+        const livingPlayers = players.filter(p => !p.isDead);
+        const morts = players.filter(p => p.isDead).map(p => ({ nom: p.name, tour: p.deadAt }));
+
+        const payload = {
+            joueurs: livingPlayers.map(p => ({ nom: p.name, role: p.role })),
+            morts: morts,
+            vote_joueur: selected.name,
+            vote_type: voteType
+        };
+
+        console.log(`Envoi du vote (${voteType}) à l'API:`, payload);
+
+        try {
+            const response = await fetch("https://api-iut.codecodex.fr/", {
+                /*mode: 'no-cors',*/
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            console.log("Réponse API :", data);
+        } catch (error) {
+            console.error("Erreur lors de l'appel API :", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchVotesFromAPI('nuit', players[1]);
+    }, []);
+
     return (
         <div className="game">
             <div className={`background ${isNight ? 'background-night' : ''}`} id="background"></div>
